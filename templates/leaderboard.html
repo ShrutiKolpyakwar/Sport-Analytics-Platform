@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Leaderboard - Top Goal Scorers</h2>
+
+<!-- Add Team Button -->
+<div style="text-align: center; margin-bottom: 20px;">
+  <button id="toggleFormBtn" class="btn btn-primary">Add Team</button>
+</div>
+
+<!-- Hidden Add Team Form -->
+<div id="addTeamForm" style="display: none; margin-bottom: 20px;">
+  <form action="{% url 'leaderboard' %}" method="post" class="form-inline">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" name="player_name" class="form-control" placeholder="Player Name" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" name="team" class="form-control" placeholder="Team" required>
+    </div>
+    <div class="mb-3">
+      <input type="number" name="matches_played" class="form-control" placeholder="Matches Played" required>
+    </div>
+    <div class="mb-3">
+      <input type="number" name="goals" class="form-control" placeholder="Goals" required>
+    </div>
+    <div class="mb-3">
+      <input type="number" name="assists" class="form-control" placeholder="Assists" required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #ddd;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Matches Played</th>
+      <th>Goals</th>
+      <th>Assists</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in ranked_players %}
+    <tr>
+      <td>{{ entry.rank }}</td>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry.team }}</td>
+      <td>{{ entry.matches_played }}</td>
+      <td>{{ entry.goals }}</td>
+      <td>{{ entry.assists }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- JavaScript to toggle the Add Team form -->
+<script>
+  document.getElementById('toggleFormBtn').addEventListener('click', function() {
+      var formDiv = document.getElementById('addTeamForm');
+      formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
+  });
+</script>
+
+{% endblock %}

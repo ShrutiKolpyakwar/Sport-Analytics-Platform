@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Player Performance Chart (Static)</h2>
+<!-- Embed the generated image using the base64 data -->
+<img src="data:image/png;base64,{{ graphic }}" alt="Performance Chart" style="max-width: 100%; height: auto;">
+{% endblock %}

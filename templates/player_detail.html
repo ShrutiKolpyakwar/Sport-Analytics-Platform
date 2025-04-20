@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ player.name }} - Details</h2>
+<table>
+  <tr>
+    <th>Team</th>
+    <td>{{ player.team.name }}</td>
+  </tr>
+  <tr>
+    <th>Matches Played</th>
+    <td>{{ player.matches_played }}</td>
+  </tr>
+  <tr>
+    <th>Goals</th>
+    <td>{{ player.goals }}</td>
+  </tr>
+  <tr>
+    <th>Assists</th>
+    <td>{{ player.assists }}</td>
+  </tr>
+</table>
+<br>
+<a href="{% url 'player-list' %}">Back to Players List</a>
+{% endblock %}

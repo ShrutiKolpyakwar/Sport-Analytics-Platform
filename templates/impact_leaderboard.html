@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Impact Leaderboard - Player Impact Score</h2>
+
+<style>
+  .impact-container {
+    width: 90%;
+    margin: 20px auto;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 18px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  th {
+    background-color: #FF5733;
+    color: white;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+</style>
+
+<div class="impact-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Matches Played</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Impact Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in ranked_impact %}
+      <tr>
+        <td>{{ item.rank }}</td>
+        <td>{{ item.player.name }}</td>
+        <td>{{ item.player.team.name }}</td>
+        <td>{{ item.player.matches_played }}</td>
+        <td>{{ item.player.goals }}</td>
+        <td>{{ item.player.assists }}</td>
+        <td>{{ item.impact_score|floatformat:2 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

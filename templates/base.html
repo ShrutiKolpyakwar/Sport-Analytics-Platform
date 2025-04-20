@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sports Analytics Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    nav { text-align: center; margin-bottom: 20px; }
+    nav a { margin: 0 10px; text-decoration: none; font-weight: bold; color: #333; }
+    nav a:hover { color: #007bff; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'player-list' %}">Players</a>
+    <a href="{% url 'leaderboard' %}">Leaderboard</a>
+    <a href="{% url 'advanced-stats' %}">Advanced Stats</a>
+    <a href="{% url 'impact-leaderboard' %}">Impact Leaderboard</a>
+    <a href="{% url 'performance-chart-static' %}">Static Performance Chart</a>
+    <a href="{% url 'team-synergy' %}">Team Synergy</a>
+    <a href="{% url 'predict_performance' %}">Predict Goals</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </nav>
+  
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

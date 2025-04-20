@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align: center;">Sports Analytics Dashboard</h2>
+
+<!-- Registered Teams by Sport -->
+<h3> Registered Teams by Sport</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Sport</th>
+      <th>Teams Registered</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sport, teams in teams_by_sport.items %}
+    <tr>
+      <td>{{ sport }}</td>
+      <td>
+        {% if teams %}
+          {{ teams|join:", " }}
+        {% else %}
+          No teams registered.
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="2">No teams registered.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<!-- <h3>Newly Registered Teams</h3>
+<ul id="new-teams-list">
+    {% for team in new_teams %}
+        <li>{{ team.name }} - {{ team.sport }}</li>
+    {% empty %}
+        <li>No new teams registered yet.</li>
+    {% endfor %}
+</ul> -->
+
+
+<h3>Player Performance Overview</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Sport</th>
+      <th>Matches Played</th>
+      <th>Goals</th>
+      <th>Assists</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for player in players_data %}
+    <tr>
+      <td>{{ player.name }}</td>
+      <td>{{ player.team }}</td>  <!-- ✅ This should correctly display the team name -->
+      <td>{{ player.sport }}</td> <!-- ✅ This should correctly display the sport -->
+      <td>{{ player.matches_played }}</td>
+      <td>{{ player.goals }}</td>
+      <td>{{ player.assists }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No player data available.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%endblock%}
